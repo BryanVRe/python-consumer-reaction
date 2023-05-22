@@ -27,7 +27,7 @@ uri = "mongodb+srv://fsocietybvr:BryanVRe@cluster0.dor0cxy.mongodb.net/?retryWri
 # Connect to MongoDB and pizza_data database
 
 try:
-    client = MongoClient(uri, server_api=ServerApi('1'))
+    client = MongoClient(uri)
     client.admin.command('ping')
     print("Pinged your deployment. You successfully connected to MongoDB!")
 
