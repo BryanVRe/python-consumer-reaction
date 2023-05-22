@@ -5,14 +5,12 @@
 from kafka import KafkaConsumer
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
+
 import json
-import subprocess
 
-
-
-# replace here with your mongodb url
-uri = "mongodb+srv://fsocietybvr:BryanVRe@cluster0.dor0cxy.mongodb.net/?retryWrites=true&w=majority"
-
+uri = "mongodb+srv://fsocietybvr:BryanVRe@cluster0.dor0cxy.mongodb.net/?retryWrites=true&w=majority";
+#Local = "mongodb://127.0.0.1:27017"
+#URL del profe = "mongodb+srv://adsoft:adsoft-sito@cluster0.kzghgph.mongodb.net/?retryWrites=true&w=majority"
 
 # Create a new client and connect to the server
 #client = MongoClient(uri, server_api=ServerApi('1'))
@@ -36,9 +34,7 @@ try:
 except:
     print("Could not connect to MongoDB")
 
-consumer = KafkaConsumer('test',bootstrap_servers=[
-     'my-kafka-0.my-kafka-headless.bryanvre.svc.cluster.local:9092'
-    ])
+consumer = KafkaConsumer('test',bootstrap_servers=['my-kafka-0.my-kafka-headless.bryanvre.svc.cluster.local:9092'])#'my-kafka-0.my-kafka-headless.kafka-adsoftsito.svc.cluster.local:9092'])
 # Parse received data from Kafka
 for msg in consumer:
     record = json.loads(msg.value)
@@ -47,12 +43,9 @@ for msg in consumer:
 
     # Create dictionary and ingest data into MongoDB
     try:
-       nosql_rec = {'name':name }
-       print (nosql_rec)
-       nosql_id = db.nosql_info.insert_one(nosql_rec)
-       print("Data inserted with record ids", nosql_id)
-
-       subprocess.call(['sh', './test.sh'])
-
+       meme_rec = {'name':name }
+       print (meme_rec)
+       meme_id = db.memes_info.insert_one(meme_rec)
+       print("Data inserted with record ids", meme_id)
     except:
        print("Could not insert into MongoDB")
