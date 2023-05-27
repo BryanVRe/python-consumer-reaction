@@ -1,6 +1,6 @@
 # Import some necessary modules
 # pip install kafka-python
-# pip install pymongo
+# pip install pymongo 
 # pip install "pymongo[srv]"
 from kafka import KafkaConsumer
 from pymongo import MongoClient
