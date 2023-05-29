@@ -83,4 +83,3 @@ for msg in consumer:
         print(e)
 
 
-
